@@ -1,0 +1,2 @@
+libraries nesessaries to run the last ecma on react
+npm i -D @babel/core @babel/preset-env babel-loader
