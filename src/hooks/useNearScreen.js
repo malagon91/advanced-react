@@ -15,8 +15,10 @@ export function useNearScreen () {
     ).then(() => {
       const observer = new window.IntersectionObserver(entries => {
         const { isIntersecting } = entries[0]
-        if (isIntersecting) setShow(true)
-        observer.disconnect()
+        if (isIntersecting) {
+          setShow(true)
+          observer.disconnect()
+        }
       })
       // Lazy load para cargar las paginas
       // Logic to check if the element is in the viewport

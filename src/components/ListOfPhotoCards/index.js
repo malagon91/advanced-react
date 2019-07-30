@@ -17,7 +17,7 @@ query getPhotos {
 `)
 
 const ListOfPhotoCardsComponent = ({ data: { photos = [] } } = {}) => <ul>
-  {photos.map(photo => <PhotoCard id={photo.id} {...photo} />)}
+  {photos.map(photo => <PhotoCard key={photo.id} {...photo} />)}
 </ul>
 
 export const ListOfPhotoCards = withPhotos(ListOfPhotoCardsComponent)

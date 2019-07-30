@@ -8,11 +8,10 @@ const DEFAULT_PHOTO =
 
 export const PhotoCard = ({ id, likes = 0, src = DEFAULT_PHOTO }) => {
   const key = `like-${id}`
-  const [liked, setliked] = useLocalStorage(key, false)
+  const [liked, setLike] = useLocalStorage(key, false)
   const [show, element] = useNearScreen()
 
   const Icon = liked ? MdFavorite : MdFavoriteBorder
-
   return (
     <Article ref={element}>
       {show && (
@@ -24,7 +23,7 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_PHOTO }) => {
       )}
       <Button
         onClick={() => {
-          setliked(!liked)
+          setLike(!liked)
         }}
       >
         <Icon size='32px' /> {likes} Likes!
