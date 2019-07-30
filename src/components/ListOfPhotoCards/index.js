@@ -5,7 +5,7 @@ import { PhotoCard } from '../PhotoCard'
 
 const withPhotos = graphql(gql`
 query getPhotos($categoryId: ID) {
-    photos(categoryId: $categoriId){
+    photos(categoryId: $categoryId){
         id
         categoryId
         src
