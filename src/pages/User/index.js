@@ -1,5 +1,13 @@
-import React from 'react'
+import React, { useContext, Fragment } from 'react'
+import { Context } from '../../Context'
+import { SubmitButton } from '../../components/SubmitButton'
 
 export const User = () => {
-  return <p>User</p>
+  const { removeAuth } = useContext(Context)
+  return (
+    <Fragment>
+      <h1>user</h1>
+      <SubmitButton onClick={removeAuth}>Cerrar Sesion</SubmitButton>
+    </Fragment>
+  )
 }
