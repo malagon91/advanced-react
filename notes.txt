@@ -1,0 +1,15 @@
+libraries nesessaries to run the last ecma on react
+npm i -D @babel/core @babel/preset-env babel-loader
+
+////
+
+para hacer el deploy solo me logge a now y desde el folder api lanze el proyecto de back
+
+luego
+
+tengo que crear mi proyecto de now para que pueda lanzar mi app de react
+
+
+creo este task luego de crear el archivo now.json
+      "now-build": "npm run build",
+para que now sepa que tadk correr para iniciar el proyecto
