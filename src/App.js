@@ -1,25 +1,29 @@
-import React, { useContext } from 'react'
+import React, { useContext, Suspense } from 'react'
 import { GlobalStyle } from './styles/GlobalStyles'
 import { Logo } from './components/Logo'
 import { Home } from './pages/Home/Home'
 import { Router, Redirect } from '@reach/router'
 import { Detail } from './pages/Detail/Detail'
 import { NavBar } from './components/NavBar'
-import { Favs } from './pages/Favs'
+// import { Favs } from './pages/Favs'
 import { User } from './pages/User'
 import { NotRegisteredUser } from './pages/NotRegisteredUser'
 import { Context } from './Context'
 import { NotFound } from './pages/NoFound'
+const Favs = React.lazy(() => import('./pages/Favs'))
 
 /* Deprecated with contextapi
 const UserLogged = ({ children }) => {
   return children({ isAuth: false })
 } */
 
+/*
+* PAra componentes qie se carguen dinamicamente necesitamos suspense que recibe un callback con lo que renderiza mientras carga el componente dinamico
+* */
 export const App = () => {
   const { isAuth } = useContext(Context)
   return (
-    <div>
+    <Suspense fallback={<div />} >
       <GlobalStyle />
       <Logo />
       <Router>
@@ -35,6 +39,6 @@ export const App = () => {
         <User path='/user' />
       </Router>
       <NavBar />
-    </div>
+    </Suspense>
   )
 }

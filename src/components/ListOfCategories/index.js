@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { useState, useEffect, Fragment, memo } from 'react'
 import { List, Item } from './styles'
 import { Category } from '../Category'
 
@@ -19,7 +19,7 @@ function useCategoriesData () {
   return { categories, loading }
 }
 
-export const ListOfCategories = () => {
+export const ListOfCategoriesPage = () => {
   const [showFixed, setShowFixed] = useState(false)
   const { categories, loading } = useCategoriesData()
   useEffect(() => {
@@ -33,11 +33,17 @@ export const ListOfCategories = () => {
 
   const renderList = fix => (
     <List fixed={fix}>
-      {loading ? <Item key='loading' ><Category /></Item> : categories.map(cat => (
-        <Item key={cat.id}>
-          <Category {...cat} path={`/pet/${cat.id}`} />
+      {loading ? (
+        <Item key='loading'>
+          <Category />
         </Item>
-      ))}
+      ) : (
+        categories.map(cat => (
+          <Item key={cat.id}>
+            <Category {...cat} path={`/pet/${cat.id}`} />
+          </Item>
+        ))
+      )}
     </List>
   )
   return (
@@ -47,3 +53,5 @@ export const ListOfCategories = () => {
     </Fragment>
   )
 }
+// Memo recuerda las props anteriores, si las props no son diferentes no hace el re-render
+export const ListOfCategories = memo(ListOfCategoriesPage)
